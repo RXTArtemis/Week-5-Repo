@@ -25,3 +25,89 @@ this.doctors.push(doctor);
     }
 }
 
+class Menu{
+    constructor(){
+        this.doctors = [];
+        this.selectedDoctor = null;
+    }
+    start(){
+        let selection = showAllMenuOptions();
+        while(selection != 0) {
+            switch (selection){
+                case '1':
+                    this.createNewDoctor();
+                    break;
+                case '2':
+                    this.viewDoctor();
+                    break;
+                case '3':
+                    this.removeDoctor();
+                    break;
+                case '4':
+                    this.displayDoctors();
+                    break;
+                default:
+                    selection = 0;       
+            }
+            selection = this.showAllMenuOptions();
+        }
+        alert('Goodbye! Have a great day!');
+    }
+
+    showAllMenuOptions(){
+        return prompt(`
+        0)exit
+        1)create new doctor
+        2)view doctor
+        3)remove doctor
+        4)display all doctors
+        `)
+    }
+
+    showAllMenuOptions(doctorInfo){
+        return prompt(`
+        0) back
+        1)create doctor
+        2)delete doctor
+        ------------------
+        ${doctorInfo}
+        `);
+    }
+
+    displayDoctors(){
+        let doctorString ='';
+        for(let i = 0; i < this.doctors.length, i++){
+        doctorString += i + `) ` + this.doctors[i].name + '\n';
+        }
+        alert(doctorString);
+    }
+
+    createNewDoctor(){
+        let name = prompt('Enter Doctor Name.');
+        this.doctors.push(new Doctor(name));
+    }
+
+   viewDoctor(){
+    let index= prompt('Enter the index of the doctor you would like to see.');
+    if(index > -1 && index < this.teams.length){
+      this.selectedDoctor=this.doctors[index]; 
+      let description = "Doctor Name:" + this.selectedDoctor.name + '\n';
+      
+      for(let i = 0; i < this.selectedDoctor.doctors.length; i++){
+        description += i + ') ' + this.selectedDoctor.doctors[i].name 
+        + '-'+ this.selectedDoctor.doctors[i].specialty + '\n';
+      }
+      let selection = this.showAllMenuOptions(description);
+      switch(subSelection){
+        case '1':
+            this.createNewDoctor();
+            break;
+        case '2':
+            this.removeDoctor();
+      }
+    }
+   } 
+}
+
+let menu = new Menu();
+menu.start();
