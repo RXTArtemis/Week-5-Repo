@@ -76,7 +76,7 @@ class Menu{
 
     displayDoctors(){
         let doctorString ='';
-        for(let i = 0; i < this.doctors.length, i++){
+        for(let i = 0; i < this.doctors.length; i++){
         doctorString += i + `) ` + this.doctors[i].name + '\n';
         }
         alert(doctorString);
@@ -107,6 +107,19 @@ class Menu{
       }
     }
    } 
+
+   createNewDoctor(){
+    let name = prompt("Enter name for new doctor.");
+    let speciality = prompt("Enter new specialty.");
+    this.selectedDoctor.doctors.push(new Doctor(name, specialty));
+   }
+
+   deleteDoctor(){
+    let index = prompt('Enter the index of doctor you would like to remove.');
+    if(index > -1 && index < this.selectedDoctor.doctors.length){
+        this.selectedDoctor.doctors.splice(index, 1);
+    }
+   }
 }
 
 let menu = new Menu();
