@@ -1,10 +1,10 @@
 class Doctor{
     constructor(name, specialty){
         this.name = name;
-        this.speciality = speciality;
+        this.specialty = specialty;
     }
     describe(){
-        return `Dr. ${this.name} specializes in ${this.speciality}.`
+        return `Dr. ${this.name} specializes in ${this.specialty}.`
     }
 }
 
@@ -21,7 +21,7 @@ this.doctors.push(doctor);
         }
     }
     describe(){
-        return `${this.name} is a part of a practice with ${this.doctors.length} doctors.`;
+        return `${this.name} is a part of a practice of ${this.doctors.length} doctors.`;
     }
 }
 
@@ -61,7 +61,7 @@ class Menu{
         2)view doctor
         3)remove doctor
         4)display all doctors
-        `)
+        `);
     }
 
     showAllMenuOptions(doctorInfo){
