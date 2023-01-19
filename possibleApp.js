@@ -7,6 +7,16 @@ class Doctor{
         return `Dr. ${this.name} specializes in ${this.specialty}.`
     }
 }
+class Procedure{
+    constructor( procedures){
+        this.procedures =procedures;
+        procedures= [];
+    }
+    describe(){
+        return `Dr. ${this.doctor} completed ${this.procedures}. `
+    }
+}
+
 
 class Practice{
     constructor(officeName){
@@ -64,23 +74,22 @@ class Menu{
         `);
     }
 
-    showPracticeMenuOptions(practiceInfo){
+    showPracticeMenuOptions(doctorInfo){
         return prompt(`
         0) back
         1)create doctor
         2)delete doctor
         ------------------
-        ${practiceInfo}
+        ${doctorInfo}
         `);
     }
 
     displayPractice(){
-        let practiceString =this.selectedPractice.officeName;
+        let practiceString ='';
         for(let i = 0; i < this.practices.length; i++){
-        practiceString += i + `) ` + this.selectedPractice[i].officeName + '\n';
+        practiceString += i + `) ` + this.practice[i].name + '\n';
         }
         alert(practiceString);
-        console.log(practiceString)
     }
 
     createNewPractice(){
@@ -92,11 +101,10 @@ class Menu{
 
    viewPractice(){
     let index= prompt('Enter the index of the practice you would like to see.');
-
+    console.log(this.practices)
     if(index > -1 && index < this.practices.length){
       this.selectedPractice=this.practices[index]; 
       let description = "Practice Name:" + this.selectedPractice.officeName + '\n';
-      console.log(this.selectedPractice)
       
       for(let i = 0; i < this.selectedPractice.doctors.length; i++){
         description += i + ') ' + this.selectedPractice.doctors[i].name 
@@ -111,13 +119,7 @@ class Menu{
             this.removeDoctor();
       }
     }
-  }
-  deletePractice(){
-    let index = prompt('Enter the index of the practice you wish to remove.');
-    if(index> -1 && index < this.practices.length){
-        this.practices.splice(index, 1);
-    }
-} 
+   } 
 
    createNewDoctor(){
     let name = prompt("Enter name for new doctor.");
@@ -125,7 +127,7 @@ class Menu{
     this.selectedPractice.doctors.push(new Doctor(name,specialty));
    }
 
-   removeDoctor(){
+   deleteDoctor(){
     let index = prompt('Enter the index of doctor you would like to remove.');
     if(index > -1 && index < this.selectedPractice.doctors.length){
         this.selectedPractice.doctors.splice(index, 1);
